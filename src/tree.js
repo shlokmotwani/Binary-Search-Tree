@@ -55,6 +55,37 @@ class Tree {
         this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
     }
   };
+
+  insert(value){
+    if(!value){
+        console.log("Enter a valid value");
+        return;
+    }
+    let temp = this.root;
+    let newNode = new Node(value, null, null);
+    console.log("value = " + value);
+    console.log("temp node = " + temp.data);
+    while(true){
+        if(value == temp.data){
+            console.log('Value already exists in the tree!');
+            return;
+        }
+        if(value < temp.data){
+            if(!temp.left){
+                temp.left = newNode;
+                return;
+            }
+            temp = temp.left;
+        }
+        else{
+            if(!temp.right){
+                temp.right = newNode;
+                return;
+            }
+            temp = temp.right;
+        }
+    }
+  }
  
 }
 

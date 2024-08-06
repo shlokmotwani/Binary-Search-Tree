@@ -10,4 +10,8 @@ let tree2 = new Tree(array2);
 
 
 tree1.prettyPrint();
-tree2.prettyPrint();
+// tree2.prettyPrint();
+
+tree1.insert(-500);
+
+tree1.prettyPrint();
