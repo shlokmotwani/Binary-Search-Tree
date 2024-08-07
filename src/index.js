@@ -45,8 +45,17 @@ tree.prettyPrint();
 console.log("-------------------------------------------------------");
 
 //check for leaf-node-with-both-children deletion
-tree.deleteItem(11);
+// tree.deleteItem(11);
 tree.prettyPrint();
 console.log("-------------------------------------------------------");
 
-console.log(tree.find(19));
+// console.log(tree.find(19));
+
+let BFSviaTraversal = tree.levelOrderViaTraversal();
+console.log(BFSviaTraversal);
+
+
+// let BFSviaRecursion = tree.levelOrderViaRecursion(tree.root);
+// console.log(BFSviaRecursion);
+
+

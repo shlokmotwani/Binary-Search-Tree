@@ -187,6 +187,35 @@ class Tree {
     console.log("Item does not exist in the tree.");
     return;
   }
+
+  levelOrderViaTraversal() {
+    let array = [];
+    array.push(this.root);
+    let index = 0;
+    let arraySize = 1;
+    while (index < arraySize) {
+      if (array[index].left) {
+        array.push(array[index].left);
+        arraySize++;
+      }
+      if (array[index].right) {
+        array.push(array[index].right);
+        arraySize++;
+      }
+      array[index] = array[index].data;
+      index++;
+    }
+    return array;
+  }
+
+  // levelOrderViaRecursion(rootNode){
+  //   let array = [];
+  //   if(!rootNode){
+  //     return (array);
+  //   }
+  //   array.push(rootNode, rootNode.left, rootNode.right);
+
+  // }
 }
 
 export { Tree };
