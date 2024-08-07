@@ -68,7 +68,7 @@ class Tree {
   }
 
   insert(value) {
-    console.log(`insertValue ${value} called.`)
+    console.log(`insertValue ${value} called.`);
     if (!value) {
       console.log("Enter a valid value");
       return;
@@ -132,45 +132,60 @@ class Tree {
             prev.right = null;
           }
           return;
-        }
-        else{
-            //if target node has ONLY a left child
-            if(!temp.right){
-              if(isNodeALeftChild){
-                prev.left = temp.left;
-              }
-              else{
-                prev.right = temp.left;
-              }
-              temp.left = null;
+        } else {
+          //if target node has ONLY a left child
+          if (!temp.right) {
+            if (isNodeALeftChild) {
+              prev.left = temp.left;
+            } else {
+              prev.right = temp.left;
             }
-            //if target node has ONLY a right child
-            else if(!temp.left){
-              if(isNodeALeftChild){
-                prev.left = temp.right;
-              }
-              else{
-                prev.right = temp.right;
-              }
-              temp.right = null;
-            }
-            //if target node has BOTH a left AND a right child
-            else{
-              let targetNode = temp;
-              prev = temp;
-              temp = temp.right;
-              while(temp.left){
-                prev = temp;
-                temp = temp.left;
-              }
+            temp.left = null;
+          }
+          //if target node has ONLY a right child
+          else if (!temp.left) {
+            if (isNodeALeftChild) {
               prev.left = temp.right;
-              temp.right = null;
-              targetNode.data = temp.data;
+            } else {
+              prev.right = temp.right;
             }
+            temp.right = null;
+          }
+          //if target node has BOTH a left AND a right child
+          else {
+            let targetNode = temp;
+            prev = temp;
+            temp = temp.right;
+            while (temp.left) {
+              prev = temp;
+              temp = temp.left;
+            }
+            prev.left = temp.right;
+            temp.right = null;
+            targetNode.data = temp.data;
+          }
         }
         return;
       }
     }
+  }
+
+  find(value) {
+    console.log(`find ${value} called.`);
+    let temp = this.root;
+
+    while (temp) {
+      if (temp.data > value) {
+        temp = temp.left;
+      } else if (temp.data < value) {
+        temp = temp.right;
+      } else {
+        return temp;
+      }
+    }
+    //if temp reaches null, TARGET NODE NOT FOUND in the tree
+    console.log("Item does not exist in the tree.");
+    return;
   }
 }
 
