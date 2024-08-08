@@ -1,8 +1,6 @@
 import { Tree } from "./tree";
 
-let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-            11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-            21, 22, 33, 44, 35, 86, 107, 208, 119, 820,];
+let array = generateArray();
 
 let tree = new Tree(array);
 console.log("-------------------------------------------------------");
@@ -82,3 +80,12 @@ function treeOperations(){
 }
 
 treeOperations();
+
+function generateArray(){
+    let array = [];
+    let size = Math.random()*100;
+    for(let i=0; i<size; i++){
+        array.push(Math.floor(Math.random()*100));
+    }
+    return array;
+}
