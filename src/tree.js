@@ -188,7 +188,7 @@ class Tree {
     return;
   }
 
-  levelOrderViaTraversal() {
+  levelOrderViaIteration() {
     let array = [];
     array.push(this.root);
     let index = 0;
@@ -208,14 +208,94 @@ class Tree {
     return array;
   }
 
-  // levelOrderViaRecursion(rootNode){
-  //   let array = [];
-  //   if(!rootNode){
-  //     return (array);
-  //   }
-  //   array.push(rootNode, rootNode.left, rootNode.right);
+  levelOrderViaRecursion(node = null, array = [], queue = []) {
+    if (!node) {
+      return;
+    }
+    //push root node's data to array
+    if (array.length == 0) {
+      array.push(node.data);
+    }
+    if (node.left) {
+      array.push(node.left.data);
+      queue.push(node.left);
+    }
+    if (node.right) {
+      array.push(node.right.data);
+      queue.push(node.right);
+    }
+    this.levelOrderViaRecursion(queue.shift(), array, queue);
+    return array;
+  }
 
-  // }
+  inOrder(node = null, array = []) {
+    if (!node) {
+      return;
+    }
+    this.inOrder(node.left, array);
+    array.push(node.data);
+    this.inOrder(node.right, array);
+
+    return array;
+  }
+
+  preOrder(node = null, array = []) {
+    if (!node) {
+      return;
+    }
+    array.push(node.data);
+    this.preOrder(node.left, array);
+    this.preOrder(node.right, array);
+
+    return array;
+  }
+
+  postOrder(node = null, array = []) {
+    if (!node) {
+      return;
+    }
+    this.postOrder(node.left, array);
+    this.postOrder(node.right, array);
+    array.push(node.data);
+
+    return array;
+  }
+
+  height(node, count = 0) {
+    if (!node || (!node.left && !node.right)) {
+      return 0;
+    }
+
+    count++;
+
+    let leftChildHeight = this.height(node.left);
+    let rightChildHeight = this.height(node.right);
+
+    if (leftChildHeight > rightChildHeight) {
+      count += leftChildHeight;
+    } else {
+      count += rightChildHeight;
+    }
+    return count;
+  }
+
+  depth(value) {
+    let temp = this.root;
+    let count = 0;
+
+    while (temp) {
+      if (temp.data > value) {
+        temp = temp.left;
+        count++;
+      } else if (temp.data < value) {
+        temp = temp.right;
+        count++;
+      } else {
+        return count;
+      }
+    }
+    return -1;
+  }
 }
 
 export { Tree };
