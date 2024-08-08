@@ -305,10 +305,15 @@ class Tree {
 
   isBalanced(node = this.root){
     if(!node){
-      return 1;
+      return true;
     }
-    if(this.height(node.left) != this.height(node.right)){
-      return -1;
+    let leftSubTreeHeight = this.height(node.left);
+    let rightSubTreeHeight = this.height(node.right);
+    let subTreeHeightDiff = (leftSubTreeHeight>rightSubTreeHeight)
+     ? (leftSubTreeHeight-rightSubTreeHeight) :
+     (rightSubTreeHeight-leftSubTreeHeight);
+    if(subTreeHeightDiff>1){
+      return false;
     }
     return this.isBalanced(node.left) && this.isBalanced(node.right);
   }
