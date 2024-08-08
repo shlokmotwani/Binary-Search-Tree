@@ -188,7 +188,10 @@ class Tree {
     return;
   }
 
-  levelOrderViaIteration() {
+  levelOrderViaIteration(callback) {
+    if(!callback){
+      throw new Error("Callback required.");
+    }
     let array = [];
     array.push(this.root);
     let index = 0;
@@ -202,61 +205,64 @@ class Tree {
         array.push(array[index].right);
         arraySize++;
       }
-      array[index] = array[index].data;
+      array[index] = callback(array[index]);
       index++;
     }
     return array;
   }
 
-  levelOrderViaRecursion(node = null, array = [], queue = []) {
+  levelOrderViaRecursion(callback, node = null, array = [], queue = []) {
+    if(!callback){
+      throw new Error("Callback required.");
+    }
     if (!node) {
       return;
     }
     //push root node's data to array
     if (array.length == 0) {
-      array.push(node.data);
+      array.push(callback(node));
     }
     if (node.left) {
-      array.push(node.left.data);
+      array.push(callback(node.left));
       queue.push(node.left);
     }
     if (node.right) {
-      array.push(node.right.data);
+      array.push(callback(node.right));
       queue.push(node.right);
     }
-    this.levelOrderViaRecursion(queue.shift(), array, queue);
+    this.levelOrderViaRecursion(callback, queue.shift(), array, queue);
     return array;
   }
 
-  inOrder(node = null, array = []) {
+  inOrder(callback, node = null, array = []) {
     if (!node) {
       return;
     }
-    this.inOrder(node.left, array);
-    array.push(node.data);
-    this.inOrder(node.right, array);
-
-    return array;
-  }
-
-  preOrder(node = null, array = []) {
-    if (!node) {
-      return;
-    }
-    array.push(node.data);
-    this.preOrder(node.left, array);
-    this.preOrder(node.right, array);
+    this.inOrder(callback, node.left, array);
+    array.push(callback(node));
+    this.inOrder(callback, node.right, array);
 
     return array;
   }
 
-  postOrder(node = null, array = []) {
+  preOrder(callback, node = null, array = []) {
     if (!node) {
       return;
     }
-    this.postOrder(node.left, array);
-    this.postOrder(node.right, array);
-    array.push(node.data);
+    array.push(callback(node));
+    this.preOrder(callback, node.left, array);
+    this.preOrder(callback, node.right, array);
+
+    return array;
+  }
+
+  postOrder(callback, node = null, array = []) {
+    if (!node) {
+      return;
+    }
+    this.postOrder(callback, node.left, array);
+    this.postOrder(callback, node.right, array);
+    array.push(callback(node));
 
     return array;
   }
@@ -295,6 +301,16 @@ class Tree {
       }
     }
     return -1;
+  }
+
+  isBalanced(node = this.root){
+    if(!node){
+      return 1;
+    }
+    if(this.height(node.left) != this.height(node.right)){
+      return -1;
+    }
+    return this.isBalanced(node.left) && this.isBalanced(node.right);
   }
 }
 

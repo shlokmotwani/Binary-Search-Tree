@@ -7,6 +7,8 @@ console.log("-------------------------------------------------------");
 tree.prettyPrint();
 console.log("-------------------------------------------------------");
 
+console.log(tree.isBalanced());
+
 function treeOperations(){
     tree.insert(50);
     tree.prettyPrint();
@@ -51,23 +53,23 @@ function treeOperations(){
     
     // console.log(tree.find(19));
     
-    let BFSviaTraversal = tree.levelOrderViaIteration();
+    let BFSviaTraversal = tree.levelOrderViaIteration(fetchDataFromNode);
     console.log("--------------BFSviaTraversal----------------");
     console.log(BFSviaTraversal);
     
-    let BFSviaRecursion = tree.levelOrderViaRecursion(tree.root);
-    console.log("--------------BFSviaRecursion----------------");
+    let BFSviaRecursion = tree.levelOrderViaRecursion(doubleUp, tree.root);
+    console.log("--------------BFSviaRecursion (Prints doubled up values)----------------");
     console.log(BFSviaRecursion);
     
-    let inOrderTraversal = tree.inOrder(tree.root);
+    let inOrderTraversal = tree.inOrder(fetchDataFromNode, tree.root);
     console.log("--------------IN-ORDER Traversal----------------");
     console.log(inOrderTraversal);
     
-    let preOrderTraversal = tree.preOrder(tree.root);
+    let preOrderTraversal = tree.preOrder(fetchDataFromNode, tree.root);
     console.log("--------------PRE-ORDER Traversal----------------");
     console.log(preOrderTraversal);
     
-    let postOrderTraversal = tree.postOrder(tree.root);
+    let postOrderTraversal = tree.postOrder(fetchDataFromNode, tree.root);
     console.log("--------------POST-ORDER Traversal----------------");
     console.log(postOrderTraversal);
     
@@ -76,10 +78,20 @@ function treeOperations(){
     console.log(`Depth of 5 is ${tree.depth(5)}`);
     console.log(`Depth of 18 is ${tree.depth(18)}`);
     console.log(`Depth of 555 is ${tree.depth(555)}`);
+
+    function fetchDataFromNode(node){
+        return node.data;
+    }
+
+    function doubleUp(node){
+        return node.data*2;
+    }
     
 }
 
 treeOperations();
+
+
 
 function generateArray(){
     let array = [];
