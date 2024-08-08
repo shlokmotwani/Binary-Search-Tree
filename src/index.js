@@ -25,6 +25,30 @@ function treeOperations() {
   tree.prettyPrint();
   console.log("-------------------------------------------------------");
 
+  console.log(`Is Tree balanced? : ${tree.isBalanced()}`);
+
+  let BFSviaIteration = tree.levelOrderViaIteration(fetchDataFromNode);
+  console.log("--------------BFSviaIteration----------------");
+  console.log(BFSviaIteration);
+
+  let BFSviaRecursion = tree.levelOrderViaRecursion(doubleUp, tree.root);
+  console.log(
+    "--------------BFSviaRecursion (Prints doubled up values)----------------"
+  );
+  console.log(BFSviaRecursion);
+
+  let inOrderTraversal = tree.inOrder(fetchDataFromNode, tree.root);
+  console.log("--------------IN-ORDER Traversal----------------");
+  console.log(inOrderTraversal);
+
+  let preOrderTraversal = tree.preOrder(fetchDataFromNode, tree.root);
+  console.log("--------------PRE-ORDER Traversal----------------");
+  console.log(preOrderTraversal);
+
+  let postOrderTraversal = tree.postOrder(fetchDataFromNode, tree.root);
+  console.log("--------------POST-ORDER Traversal----------------");
+  console.log(postOrderTraversal);
+
   tree.insert(50);
   tree.prettyPrint();
   console.log("-------------------------------------------------------");
@@ -80,25 +104,25 @@ function treeOperations() {
 
   // console.log(tree.find(19));
 
-  let BFSviaIteration = tree.levelOrderViaIteration(fetchDataFromNode);
+  BFSviaIteration = tree.levelOrderViaIteration(fetchDataFromNode);
   console.log("--------------BFSviaIteration----------------");
   console.log(BFSviaIteration);
 
-  let BFSviaRecursion = tree.levelOrderViaRecursion(doubleUp, tree.root);
+  BFSviaRecursion = tree.levelOrderViaRecursion(doubleUp, tree.root);
   console.log(
     "--------------BFSviaRecursion (Prints doubled up values)----------------"
   );
   console.log(BFSviaRecursion);
 
-  let inOrderTraversal = tree.inOrder(fetchDataFromNode, tree.root);
+  inOrderTraversal = tree.inOrder(fetchDataFromNode, tree.root);
   console.log("--------------IN-ORDER Traversal----------------");
   console.log(inOrderTraversal);
 
-  let preOrderTraversal = tree.preOrder(fetchDataFromNode, tree.root);
+  preOrderTraversal = tree.preOrder(fetchDataFromNode, tree.root);
   console.log("--------------PRE-ORDER Traversal----------------");
   console.log(preOrderTraversal);
 
-  let postOrderTraversal = tree.postOrder(fetchDataFromNode, tree.root);
+  postOrderTraversal = tree.postOrder(fetchDataFromNode, tree.root);
   console.log("--------------POST-ORDER Traversal----------------");
   console.log(postOrderTraversal);
 
