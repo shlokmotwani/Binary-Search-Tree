@@ -2,8 +2,7 @@ import { Node } from "./node";
 
 class Tree {
   constructor(array) {
-    this.array = this.linearSortWithoutDuplicates(array);
-    this.root = this.buildTree(this.array);
+    this.root = this.buildTree(this.linearSortWithoutDuplicates(array));
   }
 
   buildTree(array) {
@@ -316,6 +315,15 @@ class Tree {
       return false;
     }
     return this.isBalanced(node.left) && this.isBalanced(node.right);
+  }
+
+  rebalance(){
+    let nodes = this.levelOrderViaRecursion((node)=>{
+      return node.data;
+    }, this.root);
+    nodes = this.linearSortWithoutDuplicates(nodes);
+    let balancedTree = new Tree(nodes);
+    return balancedTree;
   }
 }
 

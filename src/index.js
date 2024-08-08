@@ -80,9 +80,9 @@ function treeOperations() {
 
   // console.log(tree.find(19));
 
-  let BFSviaTraversal = tree.levelOrderViaIteration(fetchDataFromNode);
-  console.log("--------------BFSviaTraversal----------------");
-  console.log(BFSviaTraversal);
+  let BFSviaIteration = tree.levelOrderViaIteration(fetchDataFromNode);
+  console.log("--------------BFSviaIteration----------------");
+  console.log(BFSviaIteration);
 
   let BFSviaRecursion = tree.levelOrderViaRecursion(doubleUp, tree.root);
   console.log(
@@ -109,6 +109,10 @@ function treeOperations() {
   console.log(`Depth of 555 is ${tree.depth(555)}`);
 
   console.log(`Is Tree balanced? : ${tree.isBalanced()}`);
+  let balancedTree = tree.rebalance();
+  console.log("--------------BALANCED TREE----------------");
+  balancedTree.prettyPrint();
+  console.log("-------------------------------------------------------");
 }
 
 treeOperations();
